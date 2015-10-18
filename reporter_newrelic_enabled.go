@@ -1,9 +1,9 @@
-// +build newrelic_enabled
+// +build heroku cloudfoundry
 
 package newrelic
 
 import (
-	"github.com/remind101/newrelic/sdk"
+	"github.com/sky-uk/newrelic/sdk"
 )
 
 type NRTxReporter struct{}

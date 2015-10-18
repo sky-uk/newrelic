@@ -1,0 +1,13 @@
+{
+	"ImportPath": "github.com/sky-uk/newrelic",
+	"GoVersion": "go1.5.1",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "golang.org/x/net/context",
+			"Rev": "c2528b2dd8352441850638a8bb678c2ad056fd3e"
+		}
+	]
+}

@@ -1,4 +1,4 @@
-// +build newrelic_enabled
+// +build heroku cloudfoundry
 
 // The new relic agent sdk currently only support linux (https://docs.newrelic.com/docs/agents/agent-sdk/getting-started/new-relic-agent-sdk)
 package newrelic
@@ -6,7 +6,7 @@ package newrelic
 import (
 	"fmt"
 
-	"github.com/remind101/newrelic/sdk"
+	"github.com/sky-uk/newrelic/sdk"
 )
 
 // Init initializes the embedded newrelic agent with the given app name and license key.

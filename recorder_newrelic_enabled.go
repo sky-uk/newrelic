@@ -1,4 +1,4 @@
-// +build newrelic_enabled
+// +build heroku cloudfoundry
 
 package newrelic
 
@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/remind101/newrelic/sdk"
+	"github.com/sky-uk/newrelic/sdk"
 )
 
 // recorder is the default implementation of the Recorder interface. It

@@ -1,0 +1,6 @@
+To run this example:
+
+1. go get
+2. godep save -r ./...
+3. go build -tags heroku ./...
+4. foreman start

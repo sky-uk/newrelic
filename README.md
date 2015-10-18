@@ -3,61 +3,52 @@
 A small convenience layer that sits on top of [newrelic-go-agent](https://github.com/paulsmith/newrelic-go-agent), to make
 it easy to create transactions for NewRelic in Go.
 
-## Caveats
+## Installing & Building
 
-This is alpha software. It has not been tested in a production environment, or any environment for that matter.
+New Relic's Agent SDK only supports Linux, so by default the agent is disabled to allow development on non-Linux environments.  It will however build and run on Linux environments (including Heroku & Cloud Foundry).
 
-## Installing
+## Run on Heroku/Cloud Foundry
 
-You'll need to [install the nr_agent_sdk first](https://docs.newrelic.com/docs/agents/agent-sdk/installation-configuration/installing-agent-sdk).
+You will need [godep](https://github.com/tools/godep) installed to manage dependencies.
 
-This package will only work on linux platforms. It is also disabled by default. To enable it, use the build flag `newrelic_enabled`:
+1. Add the github.com/sky-uk/newrelic to your app's imports section.
+2. Run godep save -r ./...
+3. Add newrelic.Init to your app.
+4. Add Heroku's [Go buildpack](https://github.com/heroku/heroku-buildpack-go) to your manifest.yml (Cloud Foundry's should work too).
+5. Grab the [New Relic Agent SDK](http://download.newrelic.com/agent_sdk/) and extract the binaries into your app's base directory:  
+ tar zxvf nr_agent_sdk-v0.16.1.0-beta.x86_64.tar.gz --strip=2 -C . "nr_agent_sdk-v0.16.1.0-beta.x86_64/lib"  
+ This could be added to CircleCI/Jenkins as part of a build.
+6. Change your Procfile/manifest.yml start command to have LD_LIBRARY_PATH=. before your app's binary location.
+
+ e.g.
+
+ Add  
+ [command](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html#start-commands): LD_LIBRARY_PATH=. your-app-name
+ to your CF's manifest.yml
+
+ Or add  
+ web: LD_LIBRARY_PATH=. ./your-app-name  
+ to your Procfile.
+7. Push your app!
+8. If your app requires a firewall to communicate to New Relic, it will use the HTTP_PROXY env variable by default.
+
+## Build Locally
+
+As explained earlier this will not run on Darwin or any non-Linux environment.
+
+Follow the above guide for Heroku/Cloud Foundry, but build with:
+```
+  go build -tags heroku ./...
+```
+
+Run your app with:
 
 ```
-go build -tags newrelic_enabled ./...
+LD_LIBRARY_PATH=. ./your-app-name
 ```
+
 
 ## Example Usage
 
-See `./example/main.go` for a more complete example.
-
-``` go
-import "github.com/remind101/newrelic"
-
-func main() {
-    newrelic.Init("newrelic app name", "newrelic license key")
-    tx := newrelic.NewTx("/my/transaction/name")
-    tx.Start()
-    defer tx.End()
-
-    // Add a segment
-    tx.StartGeneric("middleware")
-    // Do some middleware stuff...
-    tx.EndSegment()
-}
-```
-
-## Using with an http server
-
-This packages works well as an [httpx middleware](https://github.com/remind101/pkg/blob/master/httpx/middleware/newrelic_tracer.go).
-
-Here is an example using [httpx](https://github.com/remind101/pkg/tree/master/httpx), a context aware http handler.
-
-``` go
-    r := httpx.NewRouter()
-
-    r.Handle("/articles", &ArticlesHandler{}).Methods("GET")
-    r.Handle("/articles/{id}", &ArticleHandler{}).Methods("GET")
-
-    var h httpx.Handler
-
-    // Add NewRelic tracing.
-    h = middleware.NewRelicTracing(r, r, &newrelic.NRTxTracer{})
-
-    // Wrap the route in middleware to add a context.Context.
-    h = middleware.BackgroundContext(h)
-
-    http.ListenAndServe(":8080", h)
-```
-
-The above example will create web transactions named `GET "/articles"` and `GET "/articles/{id}"`.
+Check out the examples folder for a 'hello world'.  
+Check the [original repo](https://github.com/remind101/newrelic/blob/master/example/main.go) for more.

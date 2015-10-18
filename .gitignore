@@ -1,2 +1,6 @@
 nr_agent_sdk-v0.16.1.0-beta.x86_64
 .idea
+examples/**/gin-bin
+examples/**/Godeps
+examples/hello-world/hello-world
+*.so

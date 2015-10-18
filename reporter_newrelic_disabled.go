@@ -1,4 +1,4 @@
-// +build !newrelic_enabled
+// +build !heroku,!cloudfoundry
 
 package newrelic
 

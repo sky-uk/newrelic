@@ -1,11 +1,11 @@
-// +build newrelic_enabled
+// +build heroku cloudfoundry
 
 package sdk
 
-// #cgo LDFLAGS: -L/usr/local/lib -lnewrelic-collector-client -lnewrelic-common -lnewrelic-transaction
-// #include "newrelic_collector_client.h"
-// #include "newrelic_common.h"
-// #include "newrelic_transaction.h"
+// #cgo LDFLAGS: -L${SRCDIR}/../../../../../../../ -lnewrelic-collector-client -lnewrelic-common -lnewrelic-transaction
+// #include "../include/newrelic_collector_client.h"
+// #include "../include/newrelic_common.h"
+// #include "../include/newrelic_transaction.h"
 // #include "stdlib.h"
 import "C"
 

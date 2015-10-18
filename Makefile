@@ -4,7 +4,7 @@ build:
 	go build .
 
 test: build
-	go test -tags newrelic_enabled -v ./...
+	go test -tags heroku -v ./...
 
 docker:
 	docker build -t remind101/newrelic .

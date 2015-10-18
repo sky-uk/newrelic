@@ -1,4 +1,4 @@
-// +build !newrelic_enabled
+// +build !heroku,!cloudfoundry
 
 // No op implementation for non linux platforms (new relix agent sdk only support linux right now)
 package newrelic
