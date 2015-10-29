@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/sky-uk/newrelic/Godeps/_workspace/src/golang.org/x/net/context"
+	"github.com/sky-uk/newrelic-go-agent/Godeps/_workspace/src/golang.org/x/net/context"
 )
 
 // Tx represents a transaction.

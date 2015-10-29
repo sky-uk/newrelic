@@ -6,7 +6,7 @@ package newrelic
 import (
 	"fmt"
 
-	"github.com/sky-uk/newrelic/sdk"
+	"github.com/sky-uk/newrelic-go-agent/sdk"
 )
 
 // Init initializes the embedded newrelic agent with the given app name and license key.

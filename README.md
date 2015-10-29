@@ -11,7 +11,7 @@ New Relic's Agent SDK only supports Linux, so by default the agent is disabled t
 
 You will need [godep](https://github.com/tools/godep) installed to manage dependencies.
 
-1. Add the github.com/sky-uk/newrelic to your app's imports section.
+1. Add the github.com/sky-uk/newrelic-go-agent to your app's imports section.
 2. Run godep save -r ./...
 3. Add newrelic.Init to your app.
 4. Add Heroku's [Go buildpack](https://github.com/heroku/heroku-buildpack-go) to your manifest.yml (Cloud Foundry's should work too).

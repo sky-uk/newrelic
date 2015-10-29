@@ -3,7 +3,7 @@
 package newrelic
 
 import (
-	"github.com/sky-uk/newrelic/sdk"
+	"github.com/sky-uk/newrelic-go-agent/sdk"
 )
 
 type NRTxReporter struct{}

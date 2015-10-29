@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/sky-uk/newrelic"
+	"github.com/sky-uk/newrelic-go-agent"
 	"golang.org/x/net/context"
 	"log"
 	"os"

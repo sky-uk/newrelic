@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/sky-uk/newrelic/sdk"
+	"github.com/sky-uk/newrelic-go-agent/sdk"
 )
 
 // recorder is the default implementation of the Recorder interface. It
